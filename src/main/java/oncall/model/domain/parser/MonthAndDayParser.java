@@ -2,16 +2,16 @@ package oncall.model.domain.parser;
 
 import java.util.List;
 import java.util.Set;
+import oncall.constant.ConstantBox;
 import oncall.exception.InputException;
 
 public class MonthAndDayParser {
 
-    public static final String SEPARATOR = ",";
     public static final Set<String> DAYS = Set.of("월", "화", "수", "목", "금", "토", "일");
 
     public List<String> parseMonthDayInput(String input) {
         input = input.trim();
-        List<String> monthAndDay = List.of(input.split(SEPARATOR));
+        List<String> monthAndDay = List.of(input.split(ConstantBox.SEPARATOR));
         validateLength(monthAndDay);
         validateMonth(monthAndDay);
         validateDay(monthAndDay);

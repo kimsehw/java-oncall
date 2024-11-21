@@ -8,4 +8,8 @@ public class InputException extends IllegalArgumentException {
     public InputException() {
         super(INVALID_INPUT);
     }
+
+    public InputException(ExceptionAnnounce exceptionAnnounce) {
+        super(INVALID_INPUT + exceptionAnnounce.getMessage());
+    }
 }
