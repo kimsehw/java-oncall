@@ -7,12 +7,12 @@ import oncall.exception.ExceptionAnnounce;
 import oncall.exception.InputException;
 import oncall.model.domain.parser.ScheduleInputParser;
 
-public class Scheduler {
+public class ScheduleInput {
 
     private List<String> weekdaySchedule;
     private List<String> holidaySchedule;
 
-    public Scheduler(String weekdayScheduleInput, String holidayScheduleInput) {
+    public ScheduleInput(String weekdayScheduleInput, String holidayScheduleInput) {
         ScheduleInputParser scheduleInputParser = new ScheduleInputParser();
         weekdaySchedule = scheduleInputParser.parseScheduleInput(weekdayScheduleInput);
         holidaySchedule = scheduleInputParser.parseScheduleInput(holidayScheduleInput);
@@ -36,5 +36,6 @@ public class Scheduler {
             throw new InputException(ExceptionAnnounce.WEEK_HOLIDAY_DIFF);
         }
     }
+
 
 }

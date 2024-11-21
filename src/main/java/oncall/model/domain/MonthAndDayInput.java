@@ -3,11 +3,11 @@ package oncall.model.domain;
 import java.util.List;
 import oncall.model.domain.parser.MonthAndDayParser;
 
-public class MonthAndDay {
+public class MonthAndDayInput {
 
     private final List<String> monthAndDay;
 
-    public MonthAndDay(String input) {
+    public MonthAndDayInput(String input) {
         MonthAndDayParser monthAndDayParser = new MonthAndDayParser();
         monthAndDay = monthAndDayParser.parseMonthDayInput(input);
     }
