@@ -9,4 +9,8 @@ public class Day {
         this.isHolyDay = isHolyDay;
         this.dayOrder = dayOrder;
     }
+
+    public boolean isHolyDay() {
+        return isHolyDay;
+    }
 }

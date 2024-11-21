@@ -2,6 +2,7 @@ package oncall.model.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import oncall.exception.ExceptionAnnounce;
 import oncall.exception.InputException;
@@ -37,5 +38,16 @@ public class ScheduleInput {
         }
     }
 
+    public Map<String, List<Worker>> getScheduleTable() {
+        return Map.of(
+                "weekday", transferToWorker(weekdaySchedule),
+                "holiday", transferToWorker(holidaySchedule)
+        );
+    }
 
+    private List<Worker> transferToWorker(List<String> schedule) {
+        return schedule.stream()
+                .map(name -> new Worker(name, false))
+                .toList();
+    }
 }
