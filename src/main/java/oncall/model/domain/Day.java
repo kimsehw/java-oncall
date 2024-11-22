@@ -1,16 +1,26 @@
 package oncall.model.domain;
 
+import oncall.constant.ConstantBox;
+
 public class Day {
 
-    private boolean isHolyDay;
-    private int dayOrder;
+    private boolean isHoliDay;
+    private String dayOfWeek;
 
-    public Day(boolean isHolyDay, int dayOrder) {
-        this.isHolyDay = isHolyDay;
-        this.dayOrder = dayOrder;
+    public Day(boolean isHoliDay, String dayOfWeek) {
+        this.isHoliDay = isHoliDay;
+        this.dayOfWeek = dayOfWeek;
     }
 
-    public boolean isHolyDay() {
-        return isHolyDay;
+    public boolean isHoliDay() {
+        return isHoliDay;
+    }
+
+    public String getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public boolean isHolidayNotWeekend() {
+        return isHoliDay && (!ConstantBox.WEEKEND.contains(dayOfWeek));
     }
 }

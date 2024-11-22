@@ -1,7 +1,11 @@
 package oncall;
 
+import oncall.config.Config;
+import oncall.controller.Controller;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Controller controller = Config.createController();
+        controller.run();
     }
 }

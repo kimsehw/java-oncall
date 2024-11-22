@@ -6,17 +6,15 @@ import java.util.Map;
 import java.util.Set;
 import oncall.exception.ExceptionAnnounce;
 import oncall.exception.InputException;
-import oncall.model.domain.parser.ScheduleInputParser;
 
 public class ScheduleInput {
 
     private List<String> weekdaySchedule;
     private List<String> holidaySchedule;
 
-    public ScheduleInput(String weekdayScheduleInput, String holidayScheduleInput) {
-        ScheduleInputParser scheduleInputParser = new ScheduleInputParser();
-        weekdaySchedule = scheduleInputParser.parseScheduleInput(weekdayScheduleInput);
-        holidaySchedule = scheduleInputParser.parseScheduleInput(holidayScheduleInput);
+    public ScheduleInput(List<String> weekdayScheduleInput, List<String> holidayScheduleInput) {
+        weekdaySchedule = weekdayScheduleInput;
+        holidaySchedule = holidayScheduleInput;
         validateWeekdayHolidaySchedule();
     }
 

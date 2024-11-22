@@ -4,18 +4,21 @@ import java.util.List;
 import java.util.Set;
 import oncall.constant.ConstantBox;
 import oncall.exception.InputException;
+import oncall.model.domain.MonthAndDayInput;
 
 public class MonthAndDayParser {
 
     public static final Set<String> DAYS = Set.of("월", "화", "수", "목", "금", "토", "일");
 
-    public List<String> parseMonthDayInput(String input) {
+    public MonthAndDayInput parseMonthDayInput(String input) {
         input = input.trim();
         List<String> monthAndDay = List.of(input.split(ConstantBox.SEPARATOR));
         validateLength(monthAndDay);
         validateMonth(monthAndDay);
         validateDay(monthAndDay);
-        return monthAndDay;
+        int month = Integer.parseInt(monthAndDay.get(0));
+        String day = monthAndDay.get(1);
+        return new MonthAndDayInput(month, day);
     }
 
     private static void validateDay(List<String> monthAndDay) {

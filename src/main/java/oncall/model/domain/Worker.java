@@ -16,4 +16,8 @@ public class Worker {
     public void setChanged(boolean changed) {
         this.changed = changed;
     }
+
+    public String getName() {
+        return name;
+    }
 }

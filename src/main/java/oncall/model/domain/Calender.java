@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import oncall.constant.ConstantBox;
 
 public class Calender {
     public static final Map<Integer, Integer> MONTH_DATE = new HashMap<Integer, Integer>() {
@@ -22,14 +23,20 @@ public class Calender {
             put(12, 31);
         }
     };
+    public static final int NOHOLIDAY = -1;
     public static final Map<Integer, List<Integer>> HOLIDAY = new HashMap<Integer, List<Integer>>() {
         {
             put(1, List.of(1));
+            put(2, List.of(NOHOLIDAY));
             put(3, List.of(1));
+            put(4, List.of(NOHOLIDAY));
             put(5, List.of(5));
             put(6, List.of(6));
+            put(7, List.of(NOHOLIDAY));
             put(8, List.of(15));
+            put(9, List.of(NOHOLIDAY));
             put(10, List.of(3, 9));
+            put(11, List.of(NOHOLIDAY));
             put(12, List.of(25));
         }
     };
@@ -58,11 +65,22 @@ public class Calender {
 
         List<Day> calender = new ArrayList<>();
         for (int dayCount = 0; dayCount < numberOfDate; dayCount++) {
-            if (holidays.contains(dayCount)) {
-                calender.add(new Day(true, dayCount + startDayNumber));
+            String day = getWorkDay(dayCount + startDayNumber);
+            if (holidays.contains(dayCount + 1) || ConstantBox.WEEKEND.contains(day)) {
+                calender.add(new Day(true, day));
+                continue;
             }
-            calender.add(new Day(false, dayCount + startDayNumber));
+            calender.add(new Day(false, day));
         }
         return calender;
+    }
+
+    public String getWorkDay(int dayOrder) {
+        for (String key : DAY_MOD.keySet()) {
+            if (DAY_MOD.get(key).equals(dayOrder % 7)) {
+                return key;
+            }
+        }
+        throw new IllegalArgumentException("??????");
     }
 }
